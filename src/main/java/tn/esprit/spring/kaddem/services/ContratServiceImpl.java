@@ -44,23 +44,36 @@ ContratRepository contratRepository;
 
 
 
-	public Contrat affectContratToEtudiant (Integer idContrat, String nomE, String prenomE){
-		Etudiant e=etudiantRepository.findByNomEAndPrenomE(nomE, prenomE);
-		Contrat ce=contratRepository.findByIdContrat(idContrat);
-		Set<Contrat> contrats= e.getContrats();
-		Integer nbContratssActifs=0;
-		if (contrats.size()!=0) {
-			for (Contrat contrat : contrats) {
-				if (((contrat.getArchive())!=null)&& ((contrat.getArchive())!=false))  {
-					nbContratssActifs++;
-				}
+	public Contrat affectContratToEtudiant(Integer idContrat, String nomE, String prenomE) {
+		// Retrieve student and contract from the repositories
+		Etudiant e = etudiantRepository.findByNomEAndPrenomE(nomE, prenomE);
+		Contrat ce = contratRepository.findByIdContrat(idContrat);
+
+		// Handle the case where student or contract is not found
+		if (e == null || ce == null) {
+			throw new IllegalArgumentException("Student or Contract not found");
+		}
+
+		// Get all existing contracts for the student
+		Set<Contrat> contrats = e.getContrats();
+		int nbContratsActifs = 0;
+
+		// Count active contracts
+		for (Contrat contrat : contrats) {
+			if (Boolean.TRUE.equals(contrat.getArchive())) {
+				nbContratsActifs++;
 			}
 		}
-		if (nbContratssActifs<=4){
-		ce.setEtudiant(e);
-		contratRepository.save(ce);}
+
+		// Only assign the contract if the student has 4 or fewer active contracts
+		if (nbContratsActifs <= 4) {
+			ce.setEtudiant(e);
+			contratRepository.save(ce);
+		}
+
 		return ce;
 	}
+
 	public 	Integer nbContratsValides(Date startDate, Date endDate){
 		return contratRepository.getnbContratsValides(startDate, endDate);
 	}
