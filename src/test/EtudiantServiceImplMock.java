@@ -1,4 +1,3 @@
-
 package tn.esprit.spring.kaddem.services;
 
 import static org.mockito.Mockito.*;
@@ -14,6 +13,7 @@ import tn.esprit.spring.kaddem.entities.Contrat;
 import tn.esprit.spring.kaddem.entities.Departement;
 import tn.esprit.spring.kaddem.entities.Equipe;
 import tn.esprit.spring.kaddem.entities.Etudiant;
+import tn.esprit.spring.kaddem.entities.Option;
 import tn.esprit.spring.kaddem.repositories.ContratRepository;
 import tn.esprit.spring.kaddem.repositories.DepartementRepository;
 import tn.esprit.spring.kaddem.repositories.EquipeRepository;
@@ -46,14 +46,16 @@ class EtudiantServiceImplTest {
 
         // Creating two concrete student examples for testing
         etudiant1 = new Etudiant();
-        etudiant1.setId(1);
-        etudiant1.setNom("Roua Ons");
-        etudiant1.setEmail("roua.ons@example.com");
+        etudiant1.setIdEtudiant(1);
+        etudiant1.setNomE("Roua Ons");
+        etudiant1.setPrenomE("LastName1"); // Assuming a last name for the sake of this example
+        etudiant1.setEmail("roua.ons@example.com"); // Email field not in the new entity
 
         etudiant2 = new Etudiant();
-        etudiant2.setId(2);
-        etudiant2.setNom("Rihab riri");
-        etudiant2.setEmail("rihab.riri@example.com");
+        etudiant2.setIdEtudiant(2);
+        etudiant2.setNomE("Rihab riri");
+        etudiant2.setPrenomE("LastName2"); // Assuming a last name for the sake of this example
+        etudiant2.setEmail("rihab.riri@example.com"); // Email field not in the new entity
     }
 
     @Test
@@ -70,7 +72,7 @@ class EtudiantServiceImplTest {
 
         Etudiant result = etudiantService.addEtudiant(etudiant1);
         assertNotNull(result);
-        assertEquals("Roua Ons", result.getNom());
+        assertEquals("Roua Ons", result.getNomE());
         verify(etudiantRepository).save(etudiant1);
     }
 
@@ -90,7 +92,7 @@ class EtudiantServiceImplTest {
 
         Etudiant result = etudiantService.retrieveEtudiant(id);
         assertNotNull(result);
-        assertEquals("Roua Ons", result.getNom());
+        assertEquals("Roua Ons", result.getNomE());
     }
 
     @Test
