@@ -28,13 +28,15 @@ public class EquipeServiceImpl implements IEquipeService{
 		return (equipeRepository.save(e));
 	}
 
-	public  void deleteEquipe(Integer idEquipe){
-		Equipe e=retrieveEquipe(idEquipe);
+	public void deleteEquipe(Integer idEquipe) {
+		Equipe e = retrieveEquipe(idEquipe); // Cela lance une exception si l'équipe n'existe pas
 		equipeRepository.delete(e);
 	}
 
-	public Equipe retrieveEquipe(Integer equipeId){
-		return equipeRepository.findById(equipeId).get();
+
+	public Equipe retrieveEquipe(Integer equipeId) {
+		return equipeRepository.findById(equipeId)
+				.orElseThrow(() -> new IllegalArgumentException("L'équipe avec l'ID " + equipeId + " n'existe pas."));
 	}
 
 	public Equipe updateEquipe(Equipe e){

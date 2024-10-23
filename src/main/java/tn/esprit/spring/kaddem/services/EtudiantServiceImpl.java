@@ -14,9 +14,7 @@ import tn.esprit.spring.kaddem.repositories.DepartementRepository;
 import tn.esprit.spring.kaddem.repositories.EquipeRepository;
 import tn.esprit.spring.kaddem.repositories.EtudiantRepository;
 
-import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Set;
 
 @Service
 @Slf4j
@@ -56,7 +54,6 @@ public class EtudiantServiceImpl implements IEtudiantService{
         etudiant.setDepartement(departement);
         etudiantRepository.save(etudiant);
 	}
-	@Transactional
 	public Etudiant addAndAssignEtudiantToEquipeAndContract(Etudiant e, Integer idContrat, Integer idEquipe){
 		Contrat c=contratRepository.findById(idContrat).orElse(null);
 		Equipe eq=equipeRepository.findById(idEquipe).orElse(null);
