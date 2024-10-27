@@ -20,7 +20,7 @@ import tn.esprit.spring.kaddem.entities.Departement;
 import tn.esprit.spring.kaddem.repositories.DepartementRepository;
 
 @ExtendWith(MockitoExtension.class)
-public class DepartementServiceImplTest {
+ class DepartementServiceImplTest {
 
     @Mock
     private DepartementRepository departementRepository;
@@ -42,7 +42,7 @@ public class DepartementServiceImplTest {
     }
 
     @Test
-    public void testRetrieveAllDepartements() {
+    void testRetrieveAllDepartements() {
         List<Departement> departements = Arrays.asList(departement);
         when(departementRepository.findAll()).thenReturn(departements);
 
@@ -55,7 +55,7 @@ public class DepartementServiceImplTest {
     }
 
     @Test
-    public void testAddDepartement() {
+     void testAddDepartement() {
         when(departementRepository.save(departement)).thenReturn(departement);
 
         Departement result = departementService.addDepartement(departement);
@@ -67,7 +67,7 @@ public class DepartementServiceImplTest {
     }
 
     @Test
-    public void testUpdateDepartement() {
+    void testUpdateDepartement() {
         when(departementRepository.save(departement)).thenReturn(departement);
 
         Departement result = departementService.updateDepartement(departement);
@@ -78,7 +78,7 @@ public class DepartementServiceImplTest {
     }
 
     @Test
-    public void testRetrieveDepartement() {
+    void testRetrieveDepartement() {
         when(departementRepository.findById(departement.getIdDepart())).thenReturn(Optional.of(departement));
 
         Departement result = departementService.retrieveDepartement(departement.getIdDepart());
@@ -89,7 +89,7 @@ public class DepartementServiceImplTest {
     }
 
     @Test
-    public void testDeleteDepartement() {
+    void testDeleteDepartement() {
         when(departementRepository.findById(departement.getIdDepart())).thenReturn(Optional.of(departement));
 
         departementService.deleteDepartement(departement.getIdDepart());
