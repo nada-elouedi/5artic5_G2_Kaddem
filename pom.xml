@@ -10,7 +10,8 @@
     </parent>
     <groupId>tn.esprit.spring</groupId>
     <artifactId>kaddem</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.3</version>
+    <!-- <version>0.0.1-SNAPSHOT</version>-->
     <name>kaddem</name>
     <description>kaddem</description>
     <properties>
@@ -47,6 +48,13 @@
             <version>1.6.9</version>
         </dependency>
 
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <scope>test</scope>
+    </dependency>
+
+
     </dependencies>
 
     <build>
@@ -72,6 +80,10 @@
 <name>Nexus Repository</name>
 <url>http://localhost:8081/repository/maven-releases/</url>
 </repository>
+    <snapshotRepository>
+        <id>deploymentRepo</id>
+        <url>http://localhost:8081/repository/maven-snapshots/</url>  <!-- Ensure this points to your snapshot repository -->
+    </snapshotRepository>
 </distributionManagement>
 
 </project>
