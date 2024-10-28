@@ -53,12 +53,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-
-        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>5.10.2</version>
@@ -74,7 +68,7 @@
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>3.22.0</version> <!-- Ajoute une version pour AssertJ -->
+            <version>3.22.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
