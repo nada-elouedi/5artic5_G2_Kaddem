@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  # MySQL Service
+  mysql-db:
+    image: mysql:8.0
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: 0000
+      MYSQL_DATABASE: kaddemdb
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  # Spring Boot Application Service
+  kaddem-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: kaddem-app
+    ports:
+      - "8089:8089"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/kaddem/db?&createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 0000
+    depends_on:
+      - mysql-db
+    networks:
+      - app-network
+
+# Define a network for the services
+networks:
+  app-network:
+
+# Define a volume to persist MySQL data
+volumes:
+  mysql-data:
