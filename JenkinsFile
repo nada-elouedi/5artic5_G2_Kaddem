@@ -1,0 +1,70 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Checking out code from Git repository...'
+                git branch: 'RouaOnsTousli', url: 'https://github.com/nada-elouedi/5artic5_G2_Kaddem.git'
+            }
+
+        }
+
+        stage('Maven Clean') {
+            steps {
+                echo 'Running Maven clean...'
+                sh 'mvn clean' // Use 'sh' if you're on a Unix-like system
+            }
+        }
+
+        stage('Maven Compile') {
+            steps {
+                echo 'Running Maven compile...'
+                sh 'mvn compile'
+            }
+        }
+
+        stage('Maven Package') {
+            steps {
+                echo 'Running Maven compile...'
+                sh 'mvn package'
+            }
+        }
+
+        stage('Maven Test') {
+            steps {
+                echo 'Running Maven compile...'
+                sh 'mvn test'
+            }
+        }
+
+
+
+        // stage('MVN SonarQube') {
+        //     steps {
+        //         echo 'Running SonarQube analysis...'
+        //         sh 'curl http://localhost:9000/'
+        //         sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000/ -Dsonar.login=admin -Dsonar.password=sonarSONAR123*'
+        //     }
+        // }
+
+        // stage('Deploy to Nexus') {
+        //     steps {
+        //         echo 'Deploying to Nexus...'
+        //         sh 'mvn deploy -DskipTests'
+        //         echo 'Deployment to Nexus completed'
+        //     }
+        // }
+
+        stage('Docker Build') {
+            steps {
+                echo 'Building Docker image...'
+                sh 'mvn clean package'
+                sh 'cd /var/lib/jenkins/workspace/Devops_pipeline_project '
+                sh 'docker build -t kaddam .'
+            }
+          }
+
+
+    }
+}
