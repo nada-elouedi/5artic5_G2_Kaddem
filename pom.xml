@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
@@ -16,7 +15,6 @@
     <description>kaddem</description>
     <properties>
         <java.version>17</java.version>
-        <hibernate.version>6.1.0.Final</hibernate.version> <!-- Version de Hibernate -->
     </properties>
     <dependencies>
         <dependency>
@@ -30,7 +28,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.33</version>
+            <version>8.0.33</version> <!-- Version spécifiée pour le connecteur -->
             <scope>runtime</scope>
         </dependency>
         <dependency>
