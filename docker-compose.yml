@@ -6,7 +6,7 @@ services:
     image: mysql:8.0
     container_name: mysql-db
     environment:
-      MYSQL_ROOT_PASSWORD: 0000  # Vérifiez que cette ligne est bien formatée
+      MYSQL_ROOT_PASSWORD: '0000'  # Vérifiez que cette ligne est bien formatée
       MYSQL_DATABASE: kaddemdb
     ports:
       - "3306:3306"
