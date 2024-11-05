@@ -1,14 +1,12 @@
 version: '3.8'
 
 services:
-  # MySQL Service
   mysql-db:
     image: mysql:8.0
     container_name: mysql-db
     environment:
-      MYSQL_ROOT_PASSWORD: 
+      MYSQL_ROOT_PASSWORD: ""  # Définir explicitement un mot de passe vide pour root
       MYSQL_DATABASE: kaddemdb
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
     ports:
       - "3306:3306"
     networks:
@@ -16,7 +14,6 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
 
-  # Spring Boot Application Service
   kaddem-app:
     build:
       context: .
@@ -27,16 +24,15 @@ services:
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/kaddemdb?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: 
+      SPRING_DATASOURCE_PASSWORD: ""
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
     depends_on:
       - mysql-db
     networks:
       - app-network
 
-# Define a network for the services
 networks:
   app-network:
 
-# Define a volume to persist MySQL data
 volumes:
   mysql-data:
