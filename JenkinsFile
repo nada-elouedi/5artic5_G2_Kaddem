@@ -60,11 +60,27 @@ pipeline {
             steps {
                 echo 'Building Docker image...'
                 sh 'mvn clean package'
-                sh 'cd /var/lib/jenkins/workspace/Devops_pipeline_project '
-                sh 'docker build -t kaddam .'
+                // Build the Docker image using the correct path to your project
+                sh 'docker build -t rouaons/myprojectkaddem:latest .'
             }
-          }
+        }
 
+        stage('Push Docker Image to Docker Hub') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    script {
+                        def imageName = "rouaons/myprojectkaddem:latest" // Use your actual repository name
+                        echo 'Logging in to Docker Hub...'
+                        sh "echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin"
+
+                        echo 'Pushing Docker image to Docker Hub...'
+                        sh "docker push ${imageName}"
+
+                        echo 'Docker image pushed to Docker Hub successfully!'
+                    } // Close the script block
+                } // Close the withCredentials block
+            }
+        }
 
     }
 }
