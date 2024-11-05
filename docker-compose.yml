@@ -1,11 +1,12 @@
 version: '3.8'
 
 services:
+  # MySQL Service
   mysql-db:
     image: mysql:8.0
     container_name: mysql-db
     environment:
-      MYSQL_ROOT_PASSWORD: ""  # Définir explicitement un mot de passe vide pour root
+      MYSQL_ROOT_PASSWORD: 0000
       MYSQL_DATABASE: kaddemdb
     ports:
       - "3306:3306"
@@ -14,6 +15,7 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
 
+  # Spring Boot Application Service
   kaddem-app:
     build:
       context: .
@@ -30,8 +32,10 @@ services:
     networks:
       - app-network
 
+# Define a network for the services
 networks:
   app-network:
 
+# Define a volume to persist MySQL data
 volumes:
   mysql-data:
