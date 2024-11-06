@@ -31,6 +31,9 @@ public class Equipe implements Serializable {
 
     @OneToOne
     private DetailEquipe detailEquipe;
+    public Equipe() {
+    // Constructeur par défaut
+}
 
     // Constructeur avec seulement idEquipe et nomEquipe
     public Equipe(Integer idEquipe, String nomEquipe) {
