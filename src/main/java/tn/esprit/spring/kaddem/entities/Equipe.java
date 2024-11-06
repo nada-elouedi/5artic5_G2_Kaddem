@@ -14,9 +14,10 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor // Constructeur sans paramètres
-@AllArgsConstructor
+@NoArgsConstructor // Lombok génère automatiquement un constructeur sans paramètres
+@AllArgsConstructor // Lombok génère un constructeur avec tous les champs
 public class Equipe implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idEquipe;
@@ -31,17 +32,14 @@ public class Equipe implements Serializable {
 
     @OneToOne
     private DetailEquipe detailEquipe;
-    public Equipe() {
-    // Constructeur par défaut
-}
 
-    // Constructeur avec seulement idEquipe et nomEquipe
+    // Constructeur avec idEquipe et nomEquipe
     public Equipe(Integer idEquipe, String nomEquipe) {
         this.idEquipe = idEquipe;
         this.nomEquipe = nomEquipe;
     }
 
-    // Constructeur avec seulement nomEquipe
+    // Constructeur avec nomEquipe
     public Equipe(String nomEquipe) {
         this.nomEquipe = nomEquipe;
     }
