@@ -83,7 +83,7 @@
 <repository>
 <id>deploymentRepo</id>
 <name>Nexus Repository</name>
-<url>http://192.168.56.2:8081/repository/kaddem_repo/</url>
+<url>http://192.168.56.2:8081/repository/kaddem_repository/</url>
 </repository>
 
     <snapshotRepository>
