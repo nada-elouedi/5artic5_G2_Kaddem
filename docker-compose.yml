@@ -22,7 +22,8 @@ services:
       dockerfile: Dockerfile
     container_name: kaddem-app
     ports:
-      - "8089:8089"
+      - "8089:8089"    # Exposes port 8089 for your application
+      - "9060:9060"    # Exposes port 9060 for Actuator or Prometheus
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/kaddemdb?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
       SPRING_DATASOURCE_USERNAME: root
