@@ -32,26 +32,20 @@ public class Equipe implements Serializable {
     @OneToOne
     private DetailEquipe detailEquipe;
 
-    // Constructeur avec paramètres
+    // Constructeur avec seulement idEquipe et nomEquipe
     public Equipe(Integer idEquipe, String nomEquipe) {
         this.idEquipe = idEquipe;
         this.nomEquipe = nomEquipe;
     }
 
+    // Constructeur avec seulement nomEquipe
     public Equipe(String nomEquipe) {
         this.nomEquipe = nomEquipe;
     }
 
+    // Constructeur avec nomEquipe et niveau
     public Equipe(String nomEquipe, Niveau niveau) {
         this.nomEquipe = nomEquipe;
         this.niveau = niveau;
-    }
-
-    public Equipe(Integer idEquipe, String nomEquipe, Niveau niveau, Set<Etudiant> etudiants, DetailEquipe detailEquipe) {
-        this.idEquipe = idEquipe;
-        this.nomEquipe = nomEquipe;
-        this.niveau = niveau;
-        this.etudiants = etudiants;
-        this.detailEquipe = detailEquipe;
     }
 }
