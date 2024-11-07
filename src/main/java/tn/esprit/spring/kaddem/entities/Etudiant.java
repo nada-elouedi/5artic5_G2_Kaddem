@@ -105,4 +105,6 @@ public class Etudiant implements Serializable{
         this.op = op;
     }
 
+    public void setEmail(String mail) {
+    }
 }
