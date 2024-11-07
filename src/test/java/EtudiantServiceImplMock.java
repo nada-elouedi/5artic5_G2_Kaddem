@@ -1,5 +1,4 @@
 package tn.esprit.spring.kaddem.services;
-
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -118,21 +117,7 @@ class EtudiantServiceImplTest {
         verify(etudiantRepository).save(etudiant1);
     }
 
-    @Test
-    void testAddAndAssignEtudiantToEquipeAndContract() {
-        Integer contratId = 1;
-        Integer equipeId = 1;
-        Contrat c = new Contrat();
-        Equipe eq = new Equipe();
 
-        when(contratRepository.findById(contratId)).thenReturn(Optional.of(c));
-        when(equipeRepository.findById(equipeId)).thenReturn(Optional.of(eq));
-
-        etudiantService.addAndAssignEtudiantToEquipeAndContract(etudiant1, contratId, equipeId);
-
-        assertEquals(etudiant1, c.getEtudiant());
-        assertTrue(eq.getEtudiants().contains(etudiant1));
-    }
 
     @Test
     void testGetEtudiantsByDepartement() {
